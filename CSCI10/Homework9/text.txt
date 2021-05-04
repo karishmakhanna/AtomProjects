@@ -1,0 +1,120 @@
+hi
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+#include<iostream>
+#include<fstream>
+using namespace std;
+int main()
+{
+char data[100];
+ifstream ifile;
+//create a text file before executing.
+ifile.open ("text.txt");
+while ( !ifile.eof() )
+{
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name isssss
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name i
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name i
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name i
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name issiowdoihwod
+ifile.getline (data, 100);
+cout << data << endl;
+}
+ifile.close();
+return 0;
+}
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee life is god hahaha
+Hello my name is karishm and i like to eat cheese and crackers ayyeee l
+Hello my name i
+diejde
+e
+d
+ed
+e
+d
+e
+d
+
+e
