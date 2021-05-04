@@ -1,0 +1,23 @@
+
+
+object Problem2 {
+def main(args: Array[String]) {
+  
+  def forLoop(i:Int, cond:Int=>Boolean, incr:Int=>Int)(expr: =>Unit):Unit = { // make expr CBN since it only executes when cond is satisfied
+    if(cond(i)) { // if cond is satisfied, run loop
+      expr
+      forLoop(incr(i), cond, incr)(expr) // recurse with new i
+    }
+  }
+  
+  forLoop(0, (x)=>x<10, (x)=>x+1)(println("Hello World")) // for loop to print "Hello World" 10 times
+  
+}
+}
+
+// EXTRA CREDIT
+
+// Q: What is the most important shortcoming of the function you’ve written when compared to a for loop in C++?
+// A: This function is recursive, whereas in C++ it would be iterative. The most important
+// shortcoming is that the loop element is CBN, which means that for complicated expressions,
+// there would be many evaluations. The larger the loop is, the more the expression is evaluated.
