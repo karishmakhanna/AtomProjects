@@ -1,0 +1,136 @@
+
+
+object Problem1 {  
+  
+def main(args:Array[String]){
+  val t1 = Leaf
+  
+  val t2 = t1 insert 2 insert 4 insert 1 insert 7
+  t2.printy(0)
+  println()
+  println("Depth of tree t2: " + t2.depth())
+  println()
+  
+  val t3 = t1 insert 7 insert 1 insert 2 insert 4
+  t3.printy(0)
+  println()
+  println("Depth of tree t3: "+ t3.depth())
+  println()
+
+  val t4 = t1 insert 5 insert 4
+  t4.printy(0)
+  println()
+  
+  println("Depth of tree t4: "+ t4.depth())
+  println()
+  
+  val t5 = t1 insert 2 insert 4
+  t5.printy(0)
+  println()
+  println("Is tree t5 a subtree of tree t3? (True/False): ")
+  if(t5.exactsubtree(t3)) println("True")
+  else println("False")
+  println()
+  
+  println("Is tree t4 a subtree of tree t3? (True/False): ")
+  if(t4.exactsubtree(t3)) println("True")
+  else println("False")
+  println()
+
+}
+
+abstract class BSTree{ //Can't be instantiated - can't make an object of type BSTree.
+	def member(x: Int):Boolean//Tells us if x is in the BSTree
+	def insert(x: Int):BSTree//creates a new tree that is the same as this one, but with x added
+	//def equal(other:BSTree):Boolean//Returns true if the two trees have identical values and structure, false o/w
+	def printy(level:Int):Unit
+	def equal(other:BSTree):Boolean//Returns true if the two trees have identical values and structure, false o/w
+	def merge(other:BSTree): BSTree//Creates a new tree which contains all elements of this and of other
+	def both(other:BSTree): BSTree
+	def depth():Int
+	def exactsubtree(that:BSTree):Boolean //returns true if this appears in the exact same structure as a subtree of that (down to the Leaf references)
+} // end abstract BSTree class
+
+case object Leaf extends BSTree{
+  def member(x:Int):Boolean = false//sensible to make x cbn
+  def insert(x:Int):BSTree = new Node(x, Leaf, Leaf)
+  //def equal(other:BSTree):Boolean = 
+  def printy(level:Int):Unit = {
+    def loop(x:Int):Unit = if(x==0) print("  ")else {print("  "); loop(x-1)} 
+    loop(level) 
+    println("Leaf")}
+  def equal(other:BSTree):Boolean = {
+	  other match{
+       case Leaf => true
+       case Node(_, _, _) => false//_ don't care
+    }
+	}
+  def merge(other:BSTree): BSTree = other//Creates a new tree which contains all elements of this and of other
+	def both(other:BSTree): BSTree = Leaf
+  //DEPTH METHOD FOR LEAF *********
+  def depth():Int = 0
+  // EXACT SUBTREE METHOD FOR LEAF ********
+  def exactsubtree(that:BSTree):Boolean = {
+	  that match{
+       case Leaf => true
+       case Node(_, _, _) => true // leaf is a subtree of any node
+    }
+	}
+} // end Leaf object class
+
+case class Node(value:Int, left:BSTree, right:BSTree) extends BSTree{
+  def member(x: Int): Boolean = //Tells us if x is in the BSTree
+    if(x>value) right.member(x)//look in the right subtree
+    else if(x<value) left member x//same as left.member(x)
+    else true//x==value
+	def insert(x: Int): BSTree = //creates a new tree that is the same as this one, but with x added
+	  //BSTrees with no duplicates, so don't add a second copy if x is already in the tree
+	  if(x<value)  new Node(value, left insert x, right)        //go left
+	  else if(x>value) new Node(value, left, right insert x)
+	  else new Node(value, left, right)//x==value, NO INSERTION
+  def printy(level:Int):Unit = {
+	  right.printy(level+1);
+    def loop(x:Int):Unit = if(x==0) print("  ")else {print("  "); loop(x-1)} 
+    loop(level) 
+    println(value); left.printy(level+1)}
+  def equal(other:BSTree):Boolean = {
+     other match{
+       case Leaf => false
+       case Node(v, l, r) =>  (value==v) && (left equal l) &&  (right equal r) 
+     } 
+  }
+  def merge(other:BSTree): BSTree = {
+      other match{
+        //Creates a new tree which contains all elements of this and of other
+        case Leaf=> this
+        case Node(v, l, r) => this merge l merge r insert v
+      }
+   }
+	def both(other:BSTree): BSTree = {//Final exam problem!!!!!
+	    other match{
+	      case Leaf=> Leaf
+        case Node(v, l, r) => if(this member v)
+          (this both l) merge (this both r) insert v
+          else (this both l) merge (this both r) 
+      }
+	}
+  // DEPTH METHOD FOR NODE ********
+  def depth():Int = {
+    if(left.depth()>right.depth()) 1+left.depth()
+    else 1+right.depth()
+  }
+  // EXACT SUBTREE METHOD FOR NODE ********
+  def exactsubtree(that:BSTree):Boolean = {
+     that match{
+       case Leaf => false // node is not a subtree of a leaf
+       case Node(v, l, r) =>
+         if(this.equal(that)) true // identical tree
+         else this.exactsubtree(l) ||  this.exactsubtree(r) // check if this is a subtree of left or right children of input
+     } 
+  }
+
+} // end Node class
+
+} //end of file
+
+    

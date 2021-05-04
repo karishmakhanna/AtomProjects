@@ -1,0 +1,14 @@
+
+
+object Problem2 {
+def main(args: Array[String]) {
+    def listfun (xs:List[Int], ys:List[Int], f:(Int,Int)=>Int): List[Int] = {
+      if(xs.isEmpty || ys.isEmpty) Nil
+      else f(xs.head, ys.head)::listfun(xs.tail, ys.tail, f)
+    }
+    def test1=List(3, 8, 1, 5)
+    def test2=List(12, 6, 23, 1, 8, 4)
+    println(listfun(test1, test2, (x,y)=>(x+y)))
+    println(listfun(test1, test2, (x,y)=>(x*x+y)))
+}
+}

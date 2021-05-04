@@ -1,0 +1,14 @@
+
+
+object Problem4 {
+def main(args: Array[String]) {
+  def filterlist(f:Int=>Boolean): List[Int]=>List[Int] = 
+    (xs:List[Int])=>
+      if(xs.isEmpty) Nil
+      else if(f(xs.head)) xs.head::filterlist(f)(xs.tail)
+      else filterlist(f)(xs.tail)
+  def test=List(1, 2, 5, 6, 7, 9, 11, 12, 14, 16)
+  println(filterlist((x)=>(x%2==0))(test))
+  println(filterlist((x)=>(x>10))(test))
+}
+}

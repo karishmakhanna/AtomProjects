@@ -1,0 +1,14 @@
+
+
+object Problem1 {
+def main(args: Array[String]) {
+  def alternate (list1:List[Int], list2:List[Int]):List[Int] = {
+    if(list1.isEmpty) list2
+    else if(list2.isEmpty) list1
+    else list1.head::list2.head::alternate(list1.tail, list2.tail)
+  }
+  def test1=List(1, 2, 3, 4)
+  def test2=List(7, 8, 9, 10, 11, 12)
+  println(alternate(test1, test2))
+}
+}

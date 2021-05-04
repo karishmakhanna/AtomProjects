@@ -1,0 +1,58 @@
+
+
+object Problem4 {
+  
+  class Biguint(ls:List[Int]) { // primary constructor that takes an int list
+    def this() = this(Nil) // default constructor that takes in an empty list
+    def this(st:String) = this({ // constructor that takes in a string and stores it as an int list backwards
+      def convert(s:String):List[Int] = {
+        if(s.isEmpty) Nil
+        else convert(s.tail):::List((s.head-'0'))
+      }
+      convert(st)
+    })
+    val input = ls // stores the input list
+    
+    def +(that:Biguint):Biguint = { // both empty
+      def add(xs:List[Int], ys:List[Int], carry:Int):List[Int] = { // helper function
+        if(xs.isEmpty && ys.isEmpty) {
+          if (carry>0) carry::Nil else Nil
+        }
+        else if (!(xs.isEmpty) && (ys.isEmpty)) { //only ys empty
+          if (xs.head+carry>=10) {
+            (xs.head+carry-10)::add(xs.tail, ys, 1)
+          }
+          else (xs.head+carry)::add(xs.tail, ys, 0)
+        }
+        else if ((xs.isEmpty) && !(ys.isEmpty)) { //only xs empty
+          if (ys.head+carry>=10) {
+            (ys.head+carry-10)::add(xs, ys.tail, 1)
+          }
+          else (ys.head+carry)::add(xs, ys.tail, 0)
+        }
+        else { //both lists are not empty
+          if(xs.head+ys.head+carry>=10) {
+            (xs.head+ys.head+carry-10)::add(xs.tail, ys.tail, 1)
+          }
+          else (xs.head+ys.head+carry)::add(xs.tail, ys.tail, 0)
+        }
+      } // end of helper
+      new Biguint(add(this.input, that.input, 0)) // call to helper function
+    } // end of add function
+  } // end of Biguint class
+  
+  def main(args: Array[String]) {
+    val b1 = new Biguint(List(1, 2, 3, 4))
+    val b2 = new Biguint("4321")
+    val empty = new Biguint()
+    val b3 = b1.+(b2)
+    val b4 = b1.+(empty)
+    
+    println("Empty List: " + empty.input)
+    println("Biguint 1: " + b1.input)
+    println("Biguint 2: " + b2.input)
+    println("Empty plus Biguint 1: " + b4.input)
+    println("Biguint 1 plus Biguint 2: " + b3.input)
+  } // end of main
+  
+}

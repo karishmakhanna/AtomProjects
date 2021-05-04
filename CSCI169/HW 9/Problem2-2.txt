@@ -1,0 +1,33 @@
+
+
+object Problem2 {
+def main(args:Array[String]){
+  
+  def findlast(xs:List[Int], x:Int):Int = {
+    xs match {
+      case Nil => -1 // empty list
+      case y::ys =>
+        if(y==x){ // if the head is the value
+          if(findlast(ys,x) == -1) 0 // not found in rest of list, return index 0
+          else 1+findlast(ys,x) // add 1 to index where it was found in tail, recursion
+        }
+        else{ // if the head is not the value
+          if(findlast(ys,x) == -1) -1 // cascade return -1 if not found
+          else 1+findlast(ys,x) // add 1 to index where is was found in tail, recursion
+        }
+    }
+  }
+  
+  def test = List(3, 2, 7, 7, 5, 9, 5, 9, 0, 2, 5, 8)
+  println("Last 3 is at index " + findlast(test, 3)) // return 0
+  println("Last 2 is at index " + findlast(test, 2)) // return 9
+  println("Last 9 is at index " + findlast(test, 9)) // return 7
+  println("Last 7 is at index " + findlast(test, 7)) // return 3
+  println("Last 4 is at index " + findlast(test, 4)) // return -1
+  println("Last 8 is at index " + findlast(test, 8)) // return 11
+  
+  def test2 = List(3, 3, 3)
+  println("Last 3 is at index " + findlast(test2, 3)) // return 2
+  
+}
+}
