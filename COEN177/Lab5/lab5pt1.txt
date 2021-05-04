@@ -1,0 +1,61 @@
+Name: Karishma Khanna
+Date: 4/29/21
+Title: Lab 5: Synchronization using semaphores, lock, and condition variables
+Description: (Part 1) These are my responses to the questions asked for Step 1 about the four different buying milk solutions.
+
+I downloaded/compiled/ran the buyingMilksol1.c, buyingMilksol2.c, buyingMilksol3.c, and buyingMilksol4.c programs from Camino.
+Below are my observations on each solution try.
+
+1. buyingMilksol1.c
+Output:
+The value of note is 0, the value of milk 0
+The value of note is 0, the value of milk 0
+Thread B is buying milk
+The value of note is 1, the value of milk 0
+(pauses)
+Thread A is buying milk
+The value of note is 1, the value of milk 1
+The value of note is 0, the value of milk 1
+Observations:
+Thread A ends up entering the if statement since there is no note and no milk. However, it sleeps before buying the milk.
+This allows thread B to run, where it also ends up entering the if statement since there is no note and no milk.
+Thread B sets a note, buys the milk, and removes the note. But when the program returns to thread A, it also ends up buying milk.
+This is a case of too much milk being bought.
+
+2. buyingMilksol2.c
+Output:
+The value of note is 0, the value of milk 0
+The value of note is 0, the value of milk 0
+(pauses)
+The value of note is 1, the value of milk 0
+Observations:
+Thread A sets the value of the note to true, and then enters the if block to start buying milk. However, it sleeps before buying the milk.
+This allows thread B to run and enter one if block since there is no milk. The note is still true though, so this prevents B from entering the inner block.
+So, B does not buy any milk. Then the program switches back to running thread A. However, since the note is still true, no milk is bought.
+This code makes the communication between threads A and B very scrambled, and results in starvation.
+
+3. buyingMilksol3.c
+Output:
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+(pauses)
+The value of noteA is 1, the value of noteB is 1, the value of milk 0
+Observations:
+This attempts to solve the issue from the second attempt by using two different notes, one for each thread.
+Thread A starts, sets noteA to true, and then sleeps so the program context switches. Then thread B runs, sets noteB to true, and sleeps so the program switches back.
+However, this just means that now both notes are true, so both think the other is buying milk.
+So, neither buys milk and this ends in starvation.
+
+4. buyingMilksol4.c
+Output:
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+The value of noteA is 0, the value of noteB is 0, the value of milk 0
+(pauses)
+Thread A is buying milk
+The value of noteA is 1, the value of noteB is 0, the value of milk 0
+Finally: the value of noteA is 0, the value of noteB is 0, the value of milk 1
+Observations:
+This is similar to the previous code, but there is only one context switch, from thread A to thread B, so A waits to see what B does.
+Since B sees that the noteA is true, it doesn't buy milk. It also indicates that it didn't buy milk by setting noteB to false.
+Just in case B was true, A also has a while loop where it waits for B. That's not really needed though for this case. But now, A runs and buys milk.
+It finishes by setting noteA to false, so there are no extra notes and only one thread bought milk. Success!

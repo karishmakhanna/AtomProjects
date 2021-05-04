@@ -1,0 +1,40 @@
+Name: Karishma Khanna
+Date: 4/29/21
+Title: Lab 5: Synchronization using semaphores, lock, and condition variables
+Description: (Part 2) These are my responses to the questions asked for Step 2 about the threadSync.c file.
+
+1. Explain what happens when you run the threadSync.c program?
+A: When I run this program, I see threads 0-9 entering the critical section and also returning.
+There are short pauses between each thing happening with the entering and exiting.
+Most of the time, they enter and exit in order, but sometimes a couple threads display out of order.
+After a thread enters, usually the second thread enters, and then the first thread returns (general pattern).
+Basically, only one thread is allowed to enter the critical section at a time, so the enters/returns are staggered.
+
+Sample output:
+Thread 0 Entered Critical Section..
+Thread 1 Entered Critical Section..
+			Thread 0 returned
+Thread 3 Entered Critical Section..
+			Thread 1 returned
+Thread 2 Entered Critical Section..
+Thread 4 Entered Critical Section..
+			Thread 2 returned
+			Thread 3 returned
+Thread 5 Entered Critical Section..
+			Thread 4 returned
+Thread 6 Entered Critical Section..
+			Thread 5 returned
+Thread 7 Entered Critical Section..
+			Thread 6 returned
+Thread 9 Entered Critical Section..
+			Thread 7 returned
+Thread 8 Entered Critical Section..
+			Thread 8 returned
+			Thread 9 returned
+
+2. How does this program differ from threadHello.c program?
+A: One difference is that in the threadHello.c program, the thread return statements all print together in a row at the end of the output.
+In this program, on the other hand, the return statements are somewhat alternating with the enter statements.
+This code makes sure that the other threads don't enter the critical section if another thread is inside of it.
+It also differs in that the thread numbers are unique, since when one thread accesses the variable, no other can.
+In the threadHello.c program, the numbers repeated sometimes, since the threads could access the same address space for i.

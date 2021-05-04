@@ -1,0 +1,70 @@
+Name: Karishma Khanna
+Date: 4/8/21
+Title: Lab assignment 2: Programming in C and use of Systems Calls
+Description: These are my notes, observations, and answers to questions from the lab.
+
+STEP 1:
+I copied the C program to my Atom editor.
+There was a small typo where it said /*Sample C program for Lab assignment 1*/.
+I think it meant to say /*Sample C program for Lab assignment 2*/.
+
+STEP 2:
+I compiled the program from Step 1 without errors using gcc lab2pt1234.c -o pt1234.
+
+STEP 3:
+I ran the compiled program from Step 2 with ./pt1234.
+The output was Segmentation fault: 11.
+I think this is because the program needs an input for the number of microseconds, n.
+The line with n = atoi(argv[1]); needs this input from the keyboard.
+
+STEP 4:
+I ran the program with a delay of 3000 microseconds using ./pt1234 3000.
+Then, I ran the program with a delay of 5000 microseconds using ./pt1234 5000.
+This was a bit slower than with a delay of 3000 microseconds.
+Finally, I ran the program with a delay of 500 microseconds using ./pt1234 500.
+This was much faster than with a delay of 3000 microseconds.
+I also noticed that the parent and child processes are not perfectly alternating.
+Also, each time I run the same command, the pattern of how they print is different.
+
+STEP 5:
+My goal was to create exactly 7 processes by creating exactly 2 or 0 children for each parent.
+What came to mind was a 3-tiered binary tree that results in 7 nodes in total.
+To accomplish this structure with processes, I used nested if blocks with fork() 6 times in total.
+To make sure the parents and children were in proper communication, I also included
+wait(NULL), exit(0), and exit(1) calls.
+To use wait(NULL), I added #include <sys/wait.h>    /* wait */.
+I compiled the program without errors using gcc lab2pt5.c -o pt5 and ran it with ./pt5.
+When I ran the code, the PPIDs were all matched up and there were 7 unique PIDs.
+Structure:
+                   Parent
+                  |      |
+           Child 1        Child 2
+          |      |        |       |
+    Child 3   Child 4   Child 5   Child 6
+
+STEP 6: ***
+I replaced the processes in the code from steps 1-4 with threads.
+I had to add #include <pthread.h> as well as the functions pthread_join() and
+int pthread_create(pthread_t *thread, pthread_attr_t *attr, void *(*start_routine) (void *arg), void *arg);.
+I compiled the program without errors using gcc lab2pt6.c -o pt6 and ran it with ./pt6.
+The output was Segmentation fault: 11.
+I think this is because the program needs an input for the number of microseconds, n.
+The line with n = atoi(argv[1]); needs this input from the keyboard.
+I ran the program with a delay of 3000 microseconds using ./pt6 3000.
+The program was a bit slower with a delay of 5000 microseconds using ./pt6 5000.
+The program was much faster with a delay of 500 microseconds using ./pt6 500.
+Again, the parent and child processes are not perfectly alternating and change each time I run the same command.
+
+STEP 7:
+I added the library #include <sys/wait.h>    /* wait */ to use wait(NULL).
+I copied the provided code into the corresponding blocks so that the parent had to wait for the child,
+and the child executed the ls command.
+I compiled the program without errors using gcc lab2pt7.c -o pt7 and ran it with ./pt7.
+The output was Segmentation fault: 11.
+I think this is because the program needs an input for the number of microseconds, n.
+The line with n = atoi(argv[1]); needs this input from the keyboard.
+I ran the program with a delay of 3000 microseconds using ./pt7 3000.
+The program was a bit slower with a delay of 5000 microseconds using ./pt7 5000.
+The program was much faster with a delay of 500 microseconds using ./pt7 500.
+Again, the parent and child processes are not perfectly alternating and change each time I run the same command.
+At the end, the result of ls, all the files in my Lab 2 folder, are displayed.

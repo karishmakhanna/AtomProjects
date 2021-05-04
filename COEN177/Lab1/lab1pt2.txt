@@ -1,0 +1,26 @@
+# Name: Karishma Khanna
+# Date: 4/1/21
+# Title: Lab1 - Unix/Linux Commands and Basic Shell Programming
+# Description: (Part 2) This text file records my observations/notes after running
+# Part 1 and also a little bit after running Part 3 of the lab.
+
+(Added after Part 1) When I execute one file in my Lab1 folder, it executes all
+3 files, and I can see their corresponding sizes as well as the total.
+Then, I think it verifies my HOME location, USER (alkhanna), and PATH
+(which mentions a Python framework). It also verifies my PWD (present working directory).
+There is some $$=24872 line after all that and I am not sure what that is.
+Then, my code runs. I can see everything that had an 'echo' tag being printed.
+Anything that had a 'read' tag followed by a variable name asks me for user input.
+My input is stored in the variable, which can later be accessed again with a '$' before it.
+New variables can also be created without input, and set to an expression with an 'expr' tag.
+
+(Added after Part 3) For example, for area=$(echo $radius*$radius*3.14159265 |bc),
+the variable area is set equal to an area expression using $radius and a constant.
+I noticed that adding spaces between these creates a parsing error.
+This is calculated with a basic calculator (bc).
+
+I also had some questions:
+At what point should we feel very comfortable with the new commands/syntax like
+from the top half of the shell code?
+What are your standards for good code formatting? The GNU site was a bit confusing,
+but if you could upload a sample, that would be great.

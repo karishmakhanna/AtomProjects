@@ -1,0 +1,41 @@
+Name: Karishma Khanna
+Date: 4/22/21
+Title: Lab 4: Developing multi-threaded applications
+Description: (Notes) This file contains my notes, observations, and answers to questions from the lab.
+
+STEP 1
+
+Explain what happens when you run the threadHello.c program?
+A: The program outputs the "Hello from..." text 20 times for each 20 threads made, although their orders are random.
+I also noticed that the &i bug results in the same thread value being printed, although each has its own ID.
+Most of those prints are at the top of the output, and then the "Thread _ returned" text prints (some go between),
+but those are all in order. It ends by printing main thread done.
+
+Do you get the same result if you run it multiple times?
+A: No, the way the statements print varies each time. The "Thread _ returned" statements are still in order.
+However, the "Hello from..." statements have different thread numbers and IDs each time.
+
+What if you are also running some other demanding processes (e.g., compiling a big program, playing a Flash game on a website, or watching/streaming a video when you run this program?
+A: I tried with a game and with a YouTube video, but it didn't affect my program output in a noticeable way.
+The output still varied from execution to execution at unpredictable speeds.
+
+The function go() has the parameter arg passed as a local variable. Are these variables per-thread or
+shared state? Where does the compiler store these variables’ states?
+A: Since the arg parameter is passed into the thread create function, it is a per-thread variable.
+So, it is stored in the stack of each individual thread.
+
+The main() has local variable i. Is this variable per-thread or shared state? Where does the compiler store this variable?
+A: The variable i is stored in shared memory, since it is created and updated in the main process.
+So, it is stored in the main global variables memory.
+It is passed into the go function parameter args as a shared variable, which is clear when looking at the output.
+In the output of my code, the number of the thread repeats sometimes, since they all have access to the variable &i by reference
+(although i gets updated each time in main, the updated value isn't always reflected per-thread).
+
+STEP 2
+
+Delete the second for loop in threadHello.c program so that the main routine simply creates NTHREADS threads and then prints “Main thread done.”
+What are the possible outputs of the program now? Explain.
+A: Now, we no longer see the "Thread _ returned" text and we only see the "Hello from..." text. It is not created exactly 20 times each time.
+Sometimes the main ends first and fewer than 20 threads are created.
+They are still in random orders every time the code runs. The thread number is also still repeating in places,
+because the variable i passed into args is in shared memory. Lastly, the main thread done text isn't always the last line.
